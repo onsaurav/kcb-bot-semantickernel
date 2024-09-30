@@ -1,5 +1,7 @@
 ﻿// Generated with Bot Builder V4 SDK Template for Visual Studio EchoBot v4.22.0
 
+using KcbBotSemanticKernel.Bot.Helper;
+using KcbBotSemanticKernel.Bot.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -8,6 +10,7 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace KcbBotSemanticKernel.Bot
 {
@@ -34,6 +37,8 @@ namespace KcbBotSemanticKernel.Bot
             // Create the Bot Adapter with error handling enabled.
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
+            RegisterDependency(services);
+
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot, Bots.EchoBot>();
         }
@@ -57,6 +62,14 @@ namespace KcbBotSemanticKernel.Bot
                 });
 
             // app.UseHttpsRedirection();
+        }
+
+        private void RegisterDependency(IServiceCollection services)
+        {
+            services.AddScoped<ConfigHelper>();
+            services.AddScoped<CardHelper>();
+            services.AddScoped<ApiHelper>();
+            services.AddScoped<ChatService>();
         }
     }
 }

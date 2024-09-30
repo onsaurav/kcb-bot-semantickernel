@@ -1,0 +1,50 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Image",
+              "url": "{imageUrl}",
+              "size": "small",
+              "altText": "Map of the location"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Location Map",
+              "weight": "bolder",
+              "size": "large"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Latitude: {latitude}, Longitude: {longitude}",
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "action": {
+    "type": "VivaAction.ShowLocation",
+    "parameters": {
+      "locationCoordinates": {
+        "latitude": 28.6132039578389,
+        "longitude": 77.229488240066
+      }
+    }
+  }
+}
